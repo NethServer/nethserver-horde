@@ -28,10 +28,10 @@ rm -rf %{buildroot}
 
 %files -f %{version}-%{release}-filelist
 %defattr(-,root,root)
-%config(noreplace) /etc/horde/imp/conf.php
-%config(noreplace) /etc/horde/ingo/conf.php
-%config(noreplace) /etc/horde/kronolith/conf.php
-%config(noreplace) /etc/horde/nag/conf.php
+%config(noreplace) %attr(0660, apache, apache) /etc/horde/imp/conf.php
+%config(noreplace) %attr(0660, apache, apache) /etc/horde/ingo/conf.php
+%config(noreplace) %attr(0660, apache, apache) /etc/horde/kronolith/conf.php
+%config(noreplace) %attr(0660, apache, apache) /etc/horde/nag/conf.php
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
 
