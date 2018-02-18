@@ -10,7 +10,7 @@ BuildRequires: nethserver-devtools
 
 Requires: nethserver-httpd, nethserver-mysql, nethserver-mail-server
 Requires: php-mysql php-pecl-imagick aspell-en
-Requires: php-horde-horde php-horde-ingo php-horde-kronolith php-horde-imp
+Requires: php-horde-horde php-horde-ingo php-horde-kronolith php-horde-imp php-horde-turba
 
 %description
 NethServer configuration for Horde groupware
@@ -32,6 +32,7 @@ rm -rf %{buildroot}
 %config(noreplace) %attr(0660, apache, apache) /etc/horde/ingo/conf.php
 %config(noreplace) %attr(0660, apache, apache) /etc/horde/kronolith/conf.php
 %config(noreplace) %attr(0660, apache, apache) /etc/horde/nag/conf.php
+%config(noreplace) %attr(0660, apache, apache) /etc/horde/turba/conf.php
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
 
