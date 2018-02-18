@@ -1,3 +1,4 @@
+$conf['auth']['admins'] = array('admin');
 $conf['auth']['driver'] = 'imap';
 $conf['auth']['params'] = array(
     'hostspec' => 'localhost',

@@ -46,8 +46,4 @@ if ( ! -d '/var/lib/mysql/horde') {
 
     system("/sbin/e-smith/expand-template /etc/horde/conf.php");
     system("/usr/bin/horde-db-migrate");
-    
-    open(FH, '|-', '/usr/bin/mysql horde -B -f') || die("[ERROR] Could not connect to mysql");
-    print FH "INSERT INTO horde_users (user_uid, user_pass) VALUES ('admin', 'wDa72Pg6riJ6vAYz25KbYhQ8rGqmEqEA');";
-    close(FH);
 }

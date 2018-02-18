@@ -9,6 +9,7 @@ Features:
 - Installed modules: core, imp, ingo, kronolith, nag
 - Authentication: IMAP
 - Automatic redirect to HTTPS
+- Administrator user is set to ``admin``
 
 The installation is accessible at ``http://<FQDN>/horde``.
 
