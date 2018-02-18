@@ -1,0 +1,53 @@
+#!/usr/bin/perl -w
+
+#
+# Copyright (C) 2013 Nethesis S.r.l.
+# http://www.nethesis.it - support@nethesis.it
+# 
+# This script is part of NethServer.
+# 
+# NethServer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or any later version.
+# 
+# NethServer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with NethServer.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+package esmith;
+
+use strict;
+use Errno;
+use esmith::util;
+use NethServer::Password;
+
+
+##test if the mysql db is created, if not then the user and the mysql db are created
+if ( ! -d '/var/lib/mysql/horde') {
+    my $password = NethServer::Password::store('horde') || die('Could not generate horde password!');
+
+    my $commands = join("\n", 
+  	      "GRANT ALL PRIVILEGES ON `horde`.* TO 'horde'\@'localhost' IDENTIFIED BY '$password';",
+	      "FLUSH PRIVILEGES;",
+	      "CREATE DATABASE IF NOT EXISTS horde DEFAULT CHARACTER SET = 'utf8';",
+     ) . "\n";
+
+    print $commands;
+
+    open(FH, '|-', '/usr/bin/mysql -B -f') || die("[ERROR] Could not connect to mysql");
+    print FH $commands;     
+    close(FH);
+
+    system("/sbin/e-smith/expand-template /etc/horde/conf.php");
+    system("/usr/bin/horde-db-migrate");
+    
+    open(FH, '|-', '/usr/bin/mysql horde -B -f') || die("[ERROR] Could not connect to mysql");
+    print FH "INSERT INTO horde_users (user_uid, user_pass) VALUES ('admin', 'wDa72Pg6riJ6vAYz25KbYhQ8rGqmEqEA');";
+    close(FH);
+}

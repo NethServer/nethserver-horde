@@ -1,0 +1,6 @@
+#
+# 30horde
+#
+RewriteEngine On
+RewriteRule ^/horde(/.*)?$ https://%\{HTTP_HOST\}/horde$1 [R=301,L]
+

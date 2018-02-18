@@ -1,0 +1,6 @@
+$conf['auth']['driver'] = 'imap';
+$conf['auth']['params'] = array(
+    'hostspec' => 'localhost',
+    'port' => 143,
+    'secure' => 'none'
+);

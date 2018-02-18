@@ -1,0 +1,47 @@
+#!/usr/bin/perl -w
+#
+# Copyright (C) 2012 Nethesis S.r.l.
+# http://www.nethesis.it - support@nethesis.it
+# 
+# This script is part of NethServer.
+# 
+# NethServer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or any later version.
+# 
+# NethServer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with NethServer.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+use esmith::Build::CreateLinks  qw(:all);
+
+
+#--------------------------------------------------
+# actions for nethserver-horde-update event
+#--------------------------------------------------
+
+my $event = "nethserver-horde-update";
+
+event_actions($event, 
+             'initialize-default-databases' => '00',
+             'nethserver-horde-conf' => '20'
+);
+templates2events("/etc/httpd/conf.d/php-horde-horde.conf",  $event);
+templates2events("/etc/httpd/conf.d/default-virtualhost.inc",  $event);
+event_services($event, 'httpd' => 'reload');
+
+
+#--------------------------------------------------
+# actions for trusted-networks-modify event
+#--------------------------------------------------
+
+$event = "trusted-networks-modify";
+
+templates2events("/etc/httpd/conf.d/php-horde-horde.conf",  $event);
+event_services($event, 'httpd' => 'reload');

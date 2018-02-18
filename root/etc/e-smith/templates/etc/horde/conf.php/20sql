@@ -1,0 +1,15 @@
+{
+  use NethServer::Password;
+  our $password = NethServer::Password::store('horde');
+
+  '';
+}
+$conf['sql']['username'] = 'horde';
+$conf['sql']['password'] = '{{$password}}';
+$conf['sql']['protocol'] = 'unix';
+$conf['sql']['database'] = 'horde';
+$conf['sql']['charset'] = 'utf-8';
+$conf['sql']['ssl'] = false;
+$conf['sql']['splitread'] = false;
+$conf['sql']['logqueries'] = false;
+$conf['sql']['phptype'] = 'mysqli';
