@@ -20,11 +20,16 @@ Install using the command line: ::
 
   yum --enablerepo=nethforge-testing 
 
-After installation, login with the admin user, go to ``Administration -> Configuration``
-and apply the configuration.
+After installation, login with the admin user, go to ``Administration -> Configuration``.
+Access each module and click on the generate configuration button without changing the configuration.
+At the end, click on ``Update all DB schemas``.
 
 TODO
 ====
+
+- Populate Turba with AD and LDAP users
+- Configure ActiveSync
+- Configure CalDAV and CardDAV
 
 Database
 ========
