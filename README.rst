@@ -13,6 +13,19 @@ Features:
 
 The installation is accessible at ``http://<FQDN>/horde``.
 
+Installation
+============
+
+Install using the command line: ::
+
+  yum --enablerepo=nethforge-testing 
+
+After installation, login with the admin user, go to ``Administration -> Configuration``
+and apply the configuration.
+
+TODO
+====
+
 Database
 ========
 
