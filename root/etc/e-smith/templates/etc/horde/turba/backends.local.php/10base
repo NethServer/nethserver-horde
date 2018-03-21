@@ -17,6 +17,8 @@
 
   if($sssd->isAD()) {
     $uid = 'samAccountName';
+    $usetls = 'true';
+    $userDN = 'cn=users,'.$userDN;
   }
 
 
@@ -28,6 +30,11 @@ $OUT .= <<EOL;
 \$cfgSources['localldap']['params']['bind_dn'] = '$bindDN';
 \$cfgSources['localldap']['params']['bind_password'] = '$bindPass';
 \$cfgSources['localldap']['params']['tls'] = $usetls;
+\$cfgSources['localldap']['params']['objectclass'] = array(
+    'organizationalPerson',
+    'user',
+    'contact'
+);
 \$cfgSources['localsql']['map']['homeAddress'] = array(
     'fields' => array(
         'homeStreet',
