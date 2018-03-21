@@ -37,3 +37,7 @@ rm -rf %{buildroot}
 %dir %{_nseventsdir}/%{name}-update
 
 %changelog
+* Wed Mar 21 2018 Markus Neuberger <dev@markusneuberger.at> - 0.0.1-1
+- thanks to Giacomo Sanchietti for base package
+- add ad/ldap config
+- add turba addressbook

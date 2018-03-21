@@ -1,0 +1,41 @@
+{
+  use NethServer::SSSD;
+  our $sssd = new NethServer::SSSD();
+  our $host = $sssd->host();
+  our $ldapURI = $sssd->ldapURI();
+  our $port = $sssd->port();
+  our $usetls = 'false';
+  our $bindDN = $sssd->bindDN();
+  our $bindPass = $sssd->bindPassword();
+  our $userDN = $sssd->userDN();
+  our $quotedBindPass = $bindPass; $quotedBindPass =~ s/\'/\\'/g;
+  our $uid = 'uid';
+
+  if($sssd->startTls()) {
+    $usetls = 'true';
+  }
+
+  if($sssd->isAD()) {
+    $uid = 'samAccountName';
+  }
+
+
+$OUT .= <<EOL;
+<?php
+\$cfgSources['localldap']['disabled'] = false;
+\$cfgSources['localldap']['params']['server'] = '$host';
+\$cfgSources['localldap']['params']['root'] = '$userDN';
+\$cfgSources['localldap']['params']['bind_dn'] = '$bindDN';
+\$cfgSources['localldap']['params']['bind_password'] = '$bindPass';
+\$cfgSources['localldap']['params']['tls'] = $usetls;
+\$cfgSources['localsql']['map']['homeAddress'] = array(
+    'fields' => array(
+        'homeStreet',
+        'homePostalCode',
+        'homeCity',
+        'homeCountry'
+    ),
+    'format' => "%s\n%s %s\n%s"
+);
+EOL
+}
