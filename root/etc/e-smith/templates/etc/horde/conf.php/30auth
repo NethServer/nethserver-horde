@@ -1,65 +1,26 @@
-{
-  use NethServer::SSSD;
-  our $sssd = new NethServer::SSSD();
-  our $host = $sssd->host();
-  our $ldapURI = $sssd->ldapURI();
-  our $port = $sssd->port();
-  our $usetls = 'false';
-  our $bindDN = $sssd->bindDN();
-  our $bindPass = $sssd->bindPassword();
-  our $userDN = $sssd->userDN();
-  our $quotedBindPass = $bindPass; $quotedBindPass =~ s/\'/\\'/g;
-  our $uid = 'uid';
-
-  if($sssd->startTls()) {
-    $usetls = 'true';
-  }
-
-  if($sssd->isAD()) {
-    $uid = 'samAccountName';
-  }
-
-
-$OUT .= <<EOL;
-\$conf['auth']['admins'] = array('admin');
-\$conf['auth']['driver'] = 'imap';
-#\$conf['ldap']['hostspec'] = array('$host');
-#\$conf['ldap']['port'] = $port;
-#\$conf['ldap']['tls'] = $usetls;
-#\$conf['ldap']['timeout'] = 5;
-#\$conf['ldap']['version'] = 3;
-#\$conf['ldap']['binddn'] = '$bindDN';
-#\$conf['ldap']['bindpw'] = '$bindPass';
-#\$conf['ldap']['user']['basedn'] = '$userDN';
-#\$conf['ldap']['user']['uid'] = '$uid';
-#\$conf['ldap']['user']['objectclass'] = array('*');
-#\$conf['ldap']['user']['filter_type'] = 'objectclass';
-#\$conf['ldap']['bindas'] = 'admin';
-#\$conf['ldap']['useldap'] = true;
-#\$conf['auth']['admins'] = array('admin');
-\$conf['auth']['checkip'] = true;
-\$conf['auth']['checkbrowser'] = true;
-\$conf['auth']['resetpassword'] = true;
-\$conf['auth']['alternate_login'] = false;
-\$conf['auth']['redirect_on_logout'] = false;
-\$conf['auth']['list_users'] = 'list';
-\$conf['auth']['params']['hostspec'] = '$host';
-\$conf['auth']['params']['port'] = 143;
-\$conf['auth']['params']['secure'] = 'none';
-\$conf['auth']['driver'] = 'imap';
-\$conf['auth']['params']['count_bad_logins'] = false;
-\$conf['auth']['params']['login_block'] = false;
-\$conf['auth']['params']['login_block_count'] = 5;
-\$conf['auth']['params']['login_block_time'] = 5;
-\$conf['signup']['allow'] = false;
-\$conf['group']['params']['driverconfig'] = 'horde';
-\$conf['group']['driver'] = 'Sql';
-\$conf['share']['no_sharing'] = false;
-\$conf['share']['auto_create'] = true;
-\$conf['share']['world'] = true;
-\$conf['share']['any_group'] = false;
-\$conf['share']['hidden'] = false;
-\$conf['share']['cache'] = false;
-\$conf['share']['driver'] = 'Sqlng';
-EOL
-}
+$conf['auth']['admins'] = array('admin');
+$conf['auth']['driver'] = 'imap';
+$conf['auth']['checkip'] = true;
+$conf['auth']['checkbrowser'] = true;
+$conf['auth']['resetpassword'] = true;
+$conf['auth']['alternate_login'] = false;
+$conf['auth']['redirect_on_logout'] = false;
+$conf['auth']['list_users'] = 'list';
+$conf['auth']['params']['hostspec'] = 'localhost';
+$conf['auth']['params']['port'] = 143;
+$conf['auth']['params']['secure'] = 'none';
+$conf['auth']['driver'] = 'imap';
+$conf['auth']['params']['count_bad_logins'] = false;
+$conf['auth']['params']['login_block'] = false;
+$conf['auth']['params']['login_block_count'] = 5;
+$conf['auth']['params']['login_block_time'] = 5;
+$conf['signup']['allow'] = false;
+$conf['group']['params']['driverconfig'] = 'horde';
+$conf['group']['driver'] = 'Sql';
+$conf['share']['no_sharing'] = false;
+$conf['share']['auto_create'] = true;
+$conf['share']['world'] = true;
+$conf['share']['any_group'] = false;
+$conf['share']['hidden'] = false;
+$conf['share']['cache'] = false;
+$conf['share']['driver'] = 'Sqlng';

@@ -35,6 +35,20 @@ $OUT .= <<EOL;
     'user',
     'contact'
 );
+
+\$cfgSources['localldap']['params']['map'] = array(
+        '__key' => 'dn',
+        'name' => 'displayname',
+        'email' => 'mail',
+        'homePhone' => 'homephone',
+        'workPhone' => 'telephonenumber',
+        'homeAddress' => 'homepostaladdress',
+        'title' => 'title',
+        'cellPhone' => 'mobile',
+        'department' => 'department',
+        'company' => 'company'
+);
+
 \$cfgSources['localsql']['map']['homeAddress'] = array(
     'fields' => array(
         'homeStreet',
