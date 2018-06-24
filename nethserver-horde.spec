@@ -8,7 +8,7 @@ BuildArch: noarch
 
 BuildRequires: nethserver-devtools
 
-Requires: nethserver-httpd, nethserver-mysql, nethserver-mail-server
+Requires: nethserver-httpd, nethserver-mysql
 Requires: php-mysql php-pecl-imagick aspell-en
 Requires: php-horde-horde php-horde-ingo php-horde-kronolith php-horde-imp php-horde-turba
 
