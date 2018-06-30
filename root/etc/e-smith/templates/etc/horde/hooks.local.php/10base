@@ -1,0 +1,25 @@
+<?php
+class Horde_Hooks
+{
+    public function prefs_init($pref, $value, $username, $scope_ob)
+    {
+        switch ($pref) {
+        case 'from_addr':
+            if (is_null($username)) {
+                return $value;
+            }
+            $mail = $username.'@domain.local';
+            return empty($mail)
+                ? ''
+                : $mail;
+
+        case 'fullname':
+            if (is_null($username)) {
+                return $value;
+            }
+            return empty($username)
+                ? ''
+                : $username;
+        }
+    }
+}
