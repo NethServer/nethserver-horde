@@ -47,3 +47,9 @@ if ( ! -d '/var/lib/mysql/horde') {
     system("/sbin/e-smith/expand-template /etc/horde/conf.php");
     system("/usr/bin/horde-db-migrate");
 }
+
+if ($horde{$activesync} == 'enabled') {
+   system("pear upgrade pear");
+   system("pear channel-discover pear.horde.org");
+   system("pear install horde/Horde_Activesync");
+}
