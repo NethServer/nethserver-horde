@@ -1,5 +1,5 @@
 {
-return "##\n## horde activesync is disabled\n##\n" unless ${horde}{'activesync'} ne 'enabled';
+return "##\n## horde activesync is disabled\n##\n" unless ${'horde'}{'activesync'} || 'disabled' ne 'disabled';
 $OUT .= << "EOF";
 Alias /Microsoft-Server-ActiveSync /usr/share/horde/rpc.php
 Alias /autodiscover/autodiscover.xml /usr/share/horde/rpc.php
@@ -11,4 +11,5 @@ RewriteEngine On
 RewriteRule .* - [E=HTTP_MS_ASPROTOCOLVERSION:%{HTTP:Ms-Asprotocolversion}]
 RewriteRule .* - [E=HTTP_X_MS_POLICYKEY:%{HTTP:X-Ms-Policykey}]
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+EOF
 }
