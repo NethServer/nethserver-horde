@@ -36,6 +36,9 @@ templates2events("/etc/httpd/conf.d/php-horde-horde.conf",  $event);
 templates2events("/etc/httpd/conf.d/default-virtualhost.inc",  $event);
 templates2events("/etc/horde/conf.php",  $event);
 templates2events("/etc/horde/turba/backends.local.php",  $event);
+templates2events("/etc/horde/hooks.local.php",  $event);
+templates2events("/etc/horde/imp/backends.php",  $event);
+templates2events("/etc/httpd/conf.d/horde.conf",  $event);
 event_services($event, 'httpd' => 'reload');
 
 

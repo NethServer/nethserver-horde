@@ -47,3 +47,18 @@ if ( ! -d '/var/lib/mysql/horde') {
     system("/sbin/e-smith/expand-template /etc/horde/conf.php");
     system("/usr/bin/horde-db-migrate");
 }
+
+my $db = esmith::ConfigDB->open or die "Couldn't open ConfigDB\n";
+my $record = $db->get("horde");
+        my $value;
+        if ($record)
+        {
+            $value = $record->prop('activesync') || 'disabled';
+        }
+
+if ($value eq 'enabled') {
+   system("pear upgrade pear");
+   system("pear channel-discover pear.horde.org");
+   system("pear channel-update pear.horde.org");
+   system("pear install horde/Horde_Activesync");
+}
