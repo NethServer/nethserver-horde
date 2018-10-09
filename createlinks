@@ -50,3 +50,9 @@ $event = "trusted-networks-modify";
 
 templates2events("/etc/httpd/conf.d/php-horde-horde.conf",  $event);
 event_services($event, 'httpd' => 'reload');
+
+# Subscribe to nethserver-sssd-save
+
+my $event = "nethserver-sssd-save";
+
+templates2events("/etc/horde/turba/backends.local.php",  $event);
