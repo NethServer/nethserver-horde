@@ -1,6 +1,6 @@
 Summary: NethServer configuration for Horde groupware
 Name: nethserver-horde
-Version: 0.0.1
+Version: 0.0.2
 Release: 1%{?dist}
 License: GPL
 Source: %{name}-%{version}.tar.gz
@@ -37,3 +37,7 @@ rm -rf %{buildroot}
 %dir %{_nseventsdir}/%{name}-update
 
 %changelog
+* Mon Dec 14 2020 Stephane de Labrusse <stephdl@de-labrusse.fr> - 0.0.2-1
+- Release to NethServer 7.9 nethforge
+- Update README.rst (#4)
+
