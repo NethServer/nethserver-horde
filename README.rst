@@ -18,7 +18,7 @@ Installation
 
 Install using the command line: ::
 
-  yum --enablerepo=nethforge-testing 
+  yum --enablerepo=nethforge-testing install nethserver-horde
 
 After installation, login with the admin user, go to ``Administration -> Configuration``.
 Access each module and click on the generate configuration button without changing the configuration.
@@ -34,7 +34,7 @@ TODO
 Database
 ========
 
-Configuration is saved in ``rhorde`` key inside ``configuration`` database.
+Configuration is saved in ``horde`` key inside ``configuration`` database.
 
 Available properites:
 
